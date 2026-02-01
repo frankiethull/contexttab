@@ -1,0 +1,13 @@
+Package: contexttab
+Title: ConTextTab, A Semantics-Aware Tabular In-Context Learner
+Version: 0.0.0.9000
+Authors@R: 
+    person("frank", "hull", , "frankiethull@proton.me", role = c("aut", "cre"))
+Description: R bindings for the paper ConTextTab: A Semantics-Aware Tabular In-Context Learner. 
+    Provides functions for running the in-context learner (ICL) by SAP; sap-rpt-1-oss (formerly known under the name ConTextTab).
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    reticulate

@@ -1,14 +1,24 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # contexttab
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
-The goal of contexttab is to provide R bindings to SAP’s Tabular
-in-context learner (ICL), sap-rpt-1-oss (fka ConTextTab).
+The goal of contexttab is to provide R bindings to SAP's Tabular in-context learner (ICL), sap-rpt-1-oss (fka ConTextTab).
 
 ## Installation
 
@@ -25,9 +35,9 @@ contexttab::install_contexttab_dependencies()
 
 ## Example
 
-setting up a training & testing dataset for sap-rtp-oss models.
+setting up a training & testing dataset for sap-rtp-oss models. 
 
-``` r
+```{r example}
 library(contexttab)
 library(rsample)
 contexttab::use_contexttab_env()
@@ -42,7 +52,7 @@ test <- testing(corn_splits)
 
 ### contexttab classification
 
-``` r
+```{r}
 fit <- sap_rpt_oss_classifier_fit(
  X = train |> dplyr::select(-type),  y = train$type
 )
@@ -52,23 +62,14 @@ predictions <- predict(fit, test |> dplyr::select(-type))
 probs <- predict(fit, test |> dplyr::select(-type), type = "proba")
 
 predictions |> head()
-#> [1] "Sweet"   "Sweet"   "Sweet"   "Sweet"   "Sweet"   "Popcorn"
 ```
 
-``` r
+```{r}
 probs |> head()
-#>              [,1]        [,2]      [,3]
-#> [1,] 0.0001248504 0.005554691 0.9943204
-#> [2,] 0.0005637063 0.086466216 0.9129701
-#> [3,] 0.0003248733 0.027438993 0.9722362
-#> [4,] 0.0007147577 0.007664703 0.9916205
-#> [5,] 0.0006156674 0.016328437 0.9830559
-#> [6,] 0.0005126619 0.793123066 0.2063643
 ```
 
 ### contexttab regression
-
-``` r
+```{r}
 fit <- sap_rpt_oss_regressor_fit(
  X = train |> dplyr::select(-height),  y = train$height
 )
@@ -77,5 +78,4 @@ fit <- sap_rpt_oss_regressor_fit(
 predictions <- predict(fit, test |> dplyr::select(-height))
 
 predictions |> head()
-#> [1] 59.73414 59.09195 59.64653 59.22619 59.59735 59.34375
 ```
